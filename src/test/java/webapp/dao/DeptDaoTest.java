@@ -3,6 +3,7 @@ package webapp.dao;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
@@ -27,7 +28,7 @@ public class DeptDaoTest {
 	ApplicationContext factory;
 
 	@Test
-	public void testSelectByDeptno() throws SQLException {
+	public void test1_SelectByDeptno() throws SQLException {
 		DeptDao dao = factory.getBean(DeptDao.class);
 				
 		Dept dept = dao.selectByDeptno(10);	
@@ -39,7 +40,7 @@ public class DeptDaoTest {
 	}
 	
 	@Test
-	public void testSelectByDeptnoWithEmps() throws SQLException {
+	public void test2_SelectByDeptnoWithEmps() throws SQLException {
 		DeptDao dao = factory.getBean(DeptDao.class);
 				
 		Dept dept = dao.selectByDeptnoWithEmps(10);
@@ -54,5 +55,19 @@ public class DeptDaoTest {
 			Log.info(e.getEmpno() + " " + e.getEname());
 		}
 	}
-
+	
+	@Test
+	public void test3_SelectALL () {
+		DeptDao dao = factory.getBean(DeptDao.class);
+		
+		List<Dept>list = dao.selectAll();
+		assertNotNull(list);
+		
+		for (Dept d : list) {
+			Log.info(d.getDeptno() + " " + d.getDname() + " " + d.getLoc());
+		}
+		
+		
+	}
+	
 }

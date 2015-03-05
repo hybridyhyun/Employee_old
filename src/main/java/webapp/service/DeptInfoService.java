@@ -2,6 +2,7 @@ package webapp.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -48,5 +49,11 @@ public class DeptInfoService {
 		return dept;
 	}
 
+	public List<Dept> getDeptsInfoAll() {
+		
+		List<Dept> list = deptdao.selectAll();
+		
+		return list;
+	}
 
 }
