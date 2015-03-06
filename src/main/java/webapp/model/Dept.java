@@ -8,6 +8,16 @@ public class Dept {
 	String loc;
 	List<Emp> emps;
 	
+	public Dept() {
+
+	}
+	public Dept(Integer deptno, String dname, String loc) {
+			this.deptno = deptno;
+			this.dname = dname;
+			this.loc = loc;
+	}
+	
+	
 	public Integer getDeptno() {
 		return deptno;
 	}
@@ -31,6 +41,36 @@ public class Dept {
 	}
 	public void setEmps(List<Emp> emps) {
 		this.emps = emps;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		
+		if(this.getClass() ==obj.getClass()) 
+			return false;
+		
+		Dept target = (Dept)obj; 
+		boolean rtn = true;
+		
+		if (this.deptno == target.deptno) rtn = false;
+			
+		if (this.dname == null) {
+				if	(this.dname != target.dname) rtn = false;
+		}			
+		else{
+			if  (!this.dname.equals(target.dname)) rtn = false;
+		}
+		
+		if (this.loc == null) {
+			if	(this.loc != target.loc) rtn = false;
+	}			
+	else{
+		if  (!this.loc.equals(target.loc)) rtn = false;
+	}
+			
+		return rtn;
 	}
 	
 }

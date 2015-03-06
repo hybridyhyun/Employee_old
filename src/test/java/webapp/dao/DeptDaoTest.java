@@ -66,8 +66,24 @@ public class DeptDaoTest {
 		for (Dept d : list) {
 			Log.info(d.getDeptno() + " " + d.getDname() + " " + d.getLoc());
 		}
+	}
+	
+	@Test
+	public void test4_SelectAllWithEmps() {
+		DeptDao  dao = factory.getBean(DeptDao.class);
+		
+		List<Dept> list = dao.selectAllWithEmps();
+		assertNotNull(list);
+		
+		for (Dept d : list) {
+			Log.info(d.getDeptno() + " " + d.getDname() + " " + d.getLoc());
+			
+			for (Emp e : d.getEmps()) {
+				Log.info(e.getEmpno() + " " + e.getEname() + " " + e.getJob());
+			}
+		}
+		
 		
 		
 	}
-	
 }
